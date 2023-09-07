@@ -5,7 +5,7 @@ const ProductContext = createContext();
 
 // Provider Logics
 const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
 
   // Fetch products logic
   useEffect(() => {

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import UserContext from "../../context/UserContext";
+import "./Login.scss";
 
 const Login = () => {
   const { login } = useContext(UserContext);
@@ -27,8 +28,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form>
+    <div className="login__container">
+      <form className="login-form">
         <label htmlFor="username">Username: </label>
         <input
           type="text"
@@ -45,10 +46,10 @@ const Login = () => {
           value={formData.password}
           onChange={handleChange}
         />
+        <button type="button" onClick={handleLogin}>
+          Login
+        </button>
       </form>
-      <button type="button" onClick={handleLogin}>
-        Login
-      </button>
     </div>
   );
 };

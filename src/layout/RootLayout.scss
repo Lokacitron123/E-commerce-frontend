@@ -1,0 +1,33 @@
+.layout__wrapper {
+  min-height: 100vh;
+  background-color: white;
+}
+
+header {
+  height: 8rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #333;
+
+  h1 {
+    text-transform: uppercase;
+    color: white;
+    font-size: 3rem;
+    span {
+      color: #ee6352;
+    }
+  }
+
+  nav {
+    a {
+      text-decoration: none;
+      color: #ee6352;
+      margin: 0.5rem;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// https: ; //www.youtube.com/watch?v=ceNMP-aQkQ4 kevin powell animations

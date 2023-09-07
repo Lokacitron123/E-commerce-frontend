@@ -1,0 +1,33 @@
+.product__card {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ee6352;
+    transition: width 0.3s ease;
+  }
+  &:hover::before {
+    width: 100%;
+  }
+}
+
+.product__imagecontainer {
+  .product__image {
+  }
+}
+
+.product__properties {
+  .product-title {
+  }
+
+  .product-description {
+  }
+
+  .product-price {
+  }
+}

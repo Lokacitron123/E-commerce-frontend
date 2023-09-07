@@ -1,0 +1,11 @@
+.product__wrapper {
+  max-width: 1200px; /* Adjust the max width as needed */
+  margin: 0 auto; /* Center the content horizontally */
+  padding: 20px;
+}
+
+.product__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
