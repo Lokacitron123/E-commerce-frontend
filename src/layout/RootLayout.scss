@@ -20,6 +20,11 @@ header {
     }
   }
 
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
   nav {
     a {
       text-decoration: none;
@@ -28,6 +33,12 @@ header {
       font-size: 1.5rem;
     }
   }
+}
+
+.outlet__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 // https: ; //www.youtube.com/watch?v=ceNMP-aQkQ4 kevin powell animations
