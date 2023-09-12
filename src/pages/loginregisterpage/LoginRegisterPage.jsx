@@ -1,4 +1,4 @@
-import "./Loginpage.scss";
+import "./LoginRegisterPage.scss";
 
 // Components
 import Login from "../../components/login/Login";

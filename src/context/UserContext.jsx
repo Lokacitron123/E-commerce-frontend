@@ -4,14 +4,16 @@ import { createContext, useState, useEffect } from "react";
 const UserContext = createContext({});
 
 // Provider Logics
-export const UserProvider = ({ children }) => {
+// eslint-disable-next-line react/prop-types
+const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [succesfulReg, setSuccesfulReg] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // Login user logic
   const login = async (username, password) => {
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,6 +34,28 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  // Register user logic
+  const registerUser = async (username, password, email) => {
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password, email }),
+      });
+
+      if (response.ok) {
+        setSuccesfulReg(true);
+      } else {
+        setSuccesfulReg(false);
+      }
+    } catch (error) {
+      console.error("Registration failed . Is in catch", error);
+      throw error;
+    }
+  };
+
   // Logout user logic
   const logout = () => {
     setUser(null);
@@ -48,7 +72,9 @@ export const UserProvider = ({ children }) => {
     user,
     login,
     logout,
+    registerUser,
     loading,
+    succesfulReg,
   };
 
   return (
@@ -58,4 +84,4 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-export default UserContext;
+export { UserContext, UserProvider };
