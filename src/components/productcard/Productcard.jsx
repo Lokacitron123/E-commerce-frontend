@@ -1,6 +1,15 @@
+import { useContext } from "react";
 import "./Productcard.scss";
 
-const Productcard = ({ product }) => {
+import { CartContext } from "../../context/CartContext";
+
+const ProductCard = ({ product }) => {
+  const { addOneToCart } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    addOneToCart(product);
+  };
+
   return (
     <div className="product__card">
       <div className="product__imagecontainer">
@@ -14,8 +23,9 @@ const Productcard = ({ product }) => {
           </p>
         </div>
       </div>
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 };
 
-export default Productcard;
+export default ProductCard;
