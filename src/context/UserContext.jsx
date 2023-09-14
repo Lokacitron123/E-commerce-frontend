@@ -24,8 +24,8 @@ const UserProvider = ({ children }) => {
       if (response.ok) {
         console.log(response.ok);
         const data = await response.json();
-        console.log(data.token);
-        setUser(data.token);
+        console.log("console logging data:", data);
+        setUser(data);
       } else {
         console.error("Login failed");
       }
