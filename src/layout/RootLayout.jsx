@@ -1,4 +1,5 @@
 import "./RootLayout.scss";
+
 import { NavLink, Outlet, Link } from "react-router-dom";
 
 // components
@@ -18,6 +19,14 @@ const RootLayout = () => {
             Products
           </NavLink>
         </nav>
+
+        <div>
+          <button className="btn__animated btn__animated-one">
+            <Link to="cart">
+              Cart <span>Items: </span>
+            </Link>
+          </button>
+        </div>
         <button className="btn__animated btn__animated-one">
           <Link to="login">Login</Link>
         </button>
