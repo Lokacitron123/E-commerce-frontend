@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { NavLink, Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import "./Login.scss";
 

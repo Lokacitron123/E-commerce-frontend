@@ -1,24 +1,23 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import { CartContext } from "./CartContext";
+import { UserContext } from "./UserContext";
 
 const ShoppingContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const ShoppingProvider = ({ children }) => {
   const { cartProducts } = useContext(CartContext);
+  const { user } = useContext(UserContext);
   console.log("Checking on line 8", cartProducts);
-  // const [fakeProducts, setFakeProducts] = useState([
-  //   {
-  //     product: "price_1NmxozF5QYyCRZGNLc0nAHuj",
-  //     quantity: 1,
-  //   },
-  // ]);
+
   console.log("Checking cartProducts", cartProducts);
   const handlePayment = async () => {
     const response = await fetch("/api/payments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        // Include the access token in the Authorization header
+        Authorization: `Bearer ${user.accessToken}`,
       },
 
       body: JSON.stringify(cartProducts),
