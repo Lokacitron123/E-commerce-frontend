@@ -57,7 +57,7 @@ const UserProvider = ({ children }) => {
 
     checkIsUserLoggedIn();
     console.log("Checking if user is logged in: ", isLoggedIn);
-  }, []);
+  }, [isLoggedIn]);
 
   const login = async (username, password) => {
     const response = await fetch("/api/login", {

@@ -1,8 +1,26 @@
-# React + Vite
+# School assignment | Creating a small E-commerce application with Stripe Payment Methods
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A school project were we were tasked to create a small E-commerce application with Stripe Payment Methods
 
-Currently, two official plugins are available:
+## Set up and run project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Start vite server in dev mode using commands below.
+
+`npm install`
+
+`npm run dev`
+
+Click provided localhost link in terminal
+
+## Learning objectives
+
+- React
+- Authentication with JSON Web Tokens and Cookies
+- Stripe
+
+## Stack used
+
+- React
+- SCSS
+- Vite
+- Stripe
