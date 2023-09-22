@@ -16,7 +16,7 @@ const ProductProvider = ({ children }) => {
 
         if (response.ok) {
           const productsData = await response.json();
-          console.log(productsData.products.data);
+
           setProducts(productsData.products.data);
         } else {
           console.log("Error fetching products");

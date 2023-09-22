@@ -1,40 +1,97 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 
-// Creating Context
 const UserContext = createContext({});
 
-// Provider Logics
 // eslint-disable-next-line react/prop-types
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [auth, setAuth] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
   const [succesfulReg, setSuccesfulReg] = useState(false);
-  const [loading, setLoading] = useState(true);
 
-  // Login user logic
-  const login = async (username, password) => {
+  // Refreshing token
+  const refreshToken = async () => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
+      const response = await fetch("/api/refresh", {
+        credentials: "include",
       });
 
       if (response.ok) {
-        console.log(response.ok);
         const data = await response.json();
-        console.log("console logging data:", data);
-        setUser(data);
+        setAuth((prev) => {
+          return { ...prev, accessToken: data.accessToken };
+        });
       } else {
-        console.error("Login failed");
+        console.error("Failed to refresh token");
       }
     } catch (error) {
-      console.error("Login failed", error);
+      console.error("Error refreshing token:", error);
     }
   };
 
-  // Register user logic
+  // Check if user is already logged in
+
+  useEffect(() => {
+    // Function to check if the accessToken cookie exists
+    const checkIsUserLoggedIn = async () => {
+      try {
+        const response = await fetch("/api/user", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (response.status === 200) {
+          const data = await response.json();
+          console.log(data.decoded.username);
+          setAuth(data.decoded.username);
+          setIsLoggedIn(true);
+        } else if (response.status === 403) {
+          setIsLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Error checking authentication:", error);
+      }
+    };
+
+    // Check for the accessToken cookie when the component initializes
+
+    checkIsUserLoggedIn();
+    console.log("Checking if user is logged in: ", isLoggedIn);
+  }, []);
+
+  const login = async (username, password) => {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    console.log(response);
+
+    if (!response.ok) {
+      let errorMessage = "";
+
+      if (response.status === 400) {
+        errorMessage = "Missing Username or Password";
+      } else if (response.status === 401) {
+        errorMessage = "Wrong Username or Password";
+      } else {
+        errorMessage = "Login Failed";
+      }
+
+      setErrMsg(errorMessage);
+
+      return;
+    }
+
+    const data = await response.json();
+    console.log("console logging data response: ", data);
+    setAuth(data.username);
+    setIsLoggedIn(true);
+  };
+
   const registerUser = async (username, password, email) => {
     try {
       const response = await fetch("/api/register", {
@@ -56,25 +113,21 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  // Logout user logic
   const logout = () => {
-    setUser(null);
+    setAuth(null);
   };
 
-  // Check if user is already logged in
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
-  // Providing values and returning the Provider
-
   const UserContextValue = {
-    user,
+    auth,
+    setAuth,
+    isLoggedIn,
+    errMsg,
+    setErrMsg,
     login,
     logout,
     registerUser,
-    loading,
     succesfulReg,
+    refreshToken,
   };
 
   return (
