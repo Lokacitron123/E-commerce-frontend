@@ -7,8 +7,7 @@ const PaymentConfirmationPage = () => {
 
   useEffect(() => {
     handleVerifyPayment();
-    console.log("Logging status from useEffect: ", verifiedPayment);
-  }, [handleVerifyPayment, verifiedPayment]);
+  }, []);
 
   return verifiedPayment === true ? (
     <div>Your payment was successful!</div>
