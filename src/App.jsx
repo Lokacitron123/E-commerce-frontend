@@ -11,6 +11,7 @@ import { ProductProvider } from "./context/ProductContext";
 import { UserProvider } from "./context/UserContext";
 import { ShoppingProvider } from "./context/ShoppingContext";
 import { CartProvider } from "./context/CartContext";
+import { OrderProvider } from "./context/OrderContext";
 
 // Import Layout
 import RootLayout from "./layout/RootLayout";
@@ -22,9 +23,6 @@ import Loginpage from "./pages/loginregisterpage/LoginRegisterPage";
 import Registeruser from "./components/register/Registeruser";
 import PaymentConfirmationPage from "./pages/paymentconfirmationpage/PaymentConfirmationPage";
 import CartPage from "./pages/cartpage/CartPage";
-import PaymentSuccesfulPage from "./pages/paymentsuccessfulpage/PaymentSuccesfulPage";
-
-// Import Components
 
 // Create Routes
 const router = createBrowserRouter(
@@ -33,10 +31,9 @@ const router = createBrowserRouter(
       <Route index element={<Homepage />} />
       <Route path="products" element={<ProductPage />} />
       <Route path="login" element={<Loginpage />} />
-      <Route path="confirmation" element={<PaymentConfirmationPage />} />
       <Route path="cart" element={<CartPage />} />
       <Route path="register" element={<Registeruser />} />
-      <Route path="confirmation" element={<PaymentSuccesfulPage />} />
+      <Route path="confirmation" element={<PaymentConfirmationPage />} />
     </Route>
   )
 );
@@ -48,7 +45,9 @@ function App() {
         <UserProvider>
           <CartProvider>
             <ShoppingProvider>
-              <RouterProvider router={router} />
+              <OrderProvider>
+                <RouterProvider router={router} />
+              </OrderProvider>
             </ShoppingProvider>
           </CartProvider>
         </UserProvider>
