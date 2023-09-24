@@ -32,10 +32,10 @@ const ShoppingProvider = ({ children }) => {
     const response = await fetch("/api/confirmation", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      // credentials: "include",
+      credentials: "include",
       body: JSON.stringify({ sessionId }),
     });
-
+    console.log("Logging the response object: ", response);
     const { verified } = await response.json();
     console.log("Logging verified after response: ", verified);
     if (verified === true) {
@@ -49,8 +49,24 @@ const ShoppingProvider = ({ children }) => {
     }
   };
 
+  const handleOrder = async () => {
+    const sessionId = localStorage.getItem("sessionId");
+
+    const response = await fetch("/api/confirmedorders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ sessionId }),
+    });
+
+    const { confirmedOrder } = await response.json();
+
+    console.log("Logging confirmed order: ", confirmedOrder);
+  };
+
   const ShoppingContextValue = {
     handlePayment,
+    handleOrder,
     verifiedPayment,
     handleVerifyPayment,
   };

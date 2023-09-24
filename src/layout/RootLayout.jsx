@@ -35,8 +35,11 @@ const RootLayout = () => {
             <Link to="login">Login</Link>
           </button>
         ) : (
-          <div>
+          <div className="loggedin__container">
             <p>{auth}</p>
+            <button className="btn__animated btn__animated-one">
+              <Link to="orders">To orders</Link>
+            </button>
           </div>
         )}
       </header>

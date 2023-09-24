@@ -23,6 +23,7 @@ import Loginpage from "./pages/loginregisterpage/LoginRegisterPage";
 import Registeruser from "./components/register/Registeruser";
 import PaymentConfirmationPage from "./pages/paymentconfirmationpage/PaymentConfirmationPage";
 import CartPage from "./pages/cartpage/CartPage";
+import Orderpage from "./pages/orderpage/Orderpage";
 
 // Create Routes
 const router = createBrowserRouter(
@@ -31,9 +32,14 @@ const router = createBrowserRouter(
       <Route index element={<Homepage />} />
       <Route path="products" element={<ProductPage />} />
       <Route path="login" element={<Loginpage />} />
+
       <Route path="cart" element={<CartPage />} />
       <Route path="register" element={<Registeruser />} />
-      <Route path="confirmation" element={<PaymentConfirmationPage />} />
+      <Route path="orders" element={<Orderpage />} />
+      <Route path="confirmation" element={<PaymentConfirmationPage />}>
+        <Route path="successful" element />
+        <Route path="successful" element />
+      </Route>
     </Route>
   )
 );

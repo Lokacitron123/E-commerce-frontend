@@ -1,6 +1,5 @@
 .layout__wrapper {
   position: relative;
-  min-height: 100vh;
   background-color: white;
 }
 
@@ -34,10 +33,20 @@ header {
       font-size: 1.5rem;
     }
   }
+
+  .loggedin__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      color: #ee6352;
+      margin-right: 1rem;
+    }
+  }
 }
 
 .outlet__wrapper {
-  min-height: calc(80vh - 8rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,10 +55,8 @@ header {
 footer {
   background-color: #333;
   color: #ee6352;
-  position: absolute;
-  left: 0;
-  bottom: 0;
   width: 100%;
+  padding: 1rem;
   .footer__container-wrapper {
     display: flex;
     justify-content: space-evenly;
