@@ -1,0 +1,11 @@
+.order__wrapper {
+  max-width: 1200px; /* Adjust the max width as needed */
+  margin: 0 auto; /* Center the content horizontally */
+  padding: 20px;
+}
+
+.order__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  gap: 1.5rem;
+}
