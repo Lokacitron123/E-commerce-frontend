@@ -11,8 +11,8 @@ const Ordercard = ({ order }) => {
         {order.products.map((product, index) => (
           <li key={index}>
             <p>Product: {product.product}</p>
-            <p>Quantity: {product.quantity}</p>
             <p>Price: ${product.price}</p>
+            <p>Quantity: {product.quantity}</p>
           </li>
         ))}
       </ul>
