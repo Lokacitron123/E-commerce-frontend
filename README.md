@@ -24,3 +24,8 @@ Click provided localhost link in terminal
 - SCSS
 - Vite
 - Stripe
+
+## Coupon
+
+Use coupon in checkout for a reduced price of total 10% off!
+Coupon: Nikefall2023
