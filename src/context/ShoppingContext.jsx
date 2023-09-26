@@ -35,18 +35,10 @@ const ShoppingProvider = ({ children }) => {
       credentials: "include",
       body: JSON.stringify({ sessionId }),
     });
-    console.log("Logging the response object: ", response);
+
     const { verified } = await response.json();
-    console.log("Logging verified after response: ", verified);
-    if (verified === true) {
-      setVerifiedPayment(true);
-      console.log(`The payment was verified: status on verified ${verified}`);
-    } else {
-      setVerifiedPayment(verified);
-      console.log(
-        `The payment was not verified: status on verified ${verified}`
-      );
-    }
+
+    setVerifiedPayment(verified);
   };
 
   const handleOrder = async () => {
